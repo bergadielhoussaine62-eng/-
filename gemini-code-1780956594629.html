@@ -1,257 +1,645 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة العمرة الإلكترونية - لوحة التحكم والتسجيل</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Tajawal', sans-serif; scroll-behavior: smooth; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>البرق لتأجير السيارات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark: #1a1e2e;
+    --darker: #111420;
+    --blue: #1a4fa0;
+    --blue-light: #2563eb;
+    --gold: #c8922a;
+    --gold-light: #e4a93a;
+    --white: #ffffff;
+    --gray: #8899aa;
+    --card-bg: #1f2537;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--darker);
+    color: var(--white);
+    direction: rtl;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(17,20,32,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--blue) 40%, var(--gold) 100%);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; color: white;
+  }
+
+  .logo-text { line-height: 1.15; }
+  .logo-text .ar { font-size: 17px; font-weight: 700; color: var(--white); }
+  .logo-text .en { font-size: 11px; font-weight: 400; color: var(--gold); letter-spacing: 1px; }
+
+  nav ul { list-style: none; display: flex; gap: 32px; }
+  nav ul a {
+    color: #ccd; text-decoration: none; font-size: 14px; font-weight: 600;
+    transition: color .2s;
+  }
+  nav ul a:hover { color: var(--gold); }
+
+  .nav-btn {
+    background: var(--gold); color: var(--darker);
+    border: none; padding: 9px 22px; border-radius: 6px;
+    font-family: 'Cairo', sans-serif; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: background .2s;
+  }
+  .nav-btn:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1221 0%, #1a1e2e 50%, #0f1629 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; left: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(26,79,160,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,146,42,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 520px; position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,146,42,0.15);
+    border: 1px solid rgba(200,146,42,0.35);
+    color: var(--gold-light);
+    padding: 5px 16px; border-radius: 20px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 900; line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    color: #9aabbd; font-size: 16px; line-height: 1.8;
+    margin-bottom: 36px;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+    color: white; border: none;
+    padding: 14px 32px; border-radius: 8px;
+    font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: transform .2s, box-shadow .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,79,160,0.4); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold); border: 1.5px solid var(--gold);
+    padding: 14px 32px; border-radius: 8px;
+    font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: background .2s, color .2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--gold); color: var(--darker); }
+
+  .hero-stats {
+    margin-top: 48px;
+    display: flex; gap: 36px;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 900; color: var(--gold); }
+  .stat-lbl { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+  .hero-car {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  .car-visual {
+    width: 100%; max-width: 460px;
+    background: linear-gradient(135deg, rgba(26,79,160,0.12), rgba(200,146,42,0.08));
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 36px 24px;
+    text-align: center;
+  }
+
+  .car-emoji { font-size: 90px; display: block; margin-bottom: 12px; }
+
+  .car-tag {
+    display: inline-block;
+    background: rgba(26,79,160,0.25);
+    border: 1px solid rgba(26,79,160,0.5);
+    color: #7ab0f5;
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 12px; margin-bottom: 8px;
+  }
+
+  .car-visual p { color: var(--gray); font-size: 13px; }
+
+  /* ── SECTION GENERIC ── */
+  section { padding: 80px 5%; }
+
+  .section-head {
+    text-align: center; margin-bottom: 52px;
+  }
+  .section-head h2 {
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 900; margin-bottom: 12px;
+  }
+  .section-head h2 span { color: var(--gold); }
+  .section-head p { color: var(--gray); font-size: 15px; }
+  .divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--gold));
+    margin: 16px auto 0;
+    border-radius: 2px;
+  }
+
+  /* ── CARS ── */
+  #cars { background: var(--dark); }
+
+  .cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .car-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .car-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+
+  .car-img {
+    height: 160px;
+    background: linear-gradient(135deg, #1a2540, #0f1629);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 72px;
+    position: relative;
+  }
+
+  .car-badge-cat {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--gold); color: var(--darker);
+    font-size: 10px; font-weight: 700; padding: 3px 10px;
+    border-radius: 12px; letter-spacing: 0.5px;
+  }
+
+  .car-info { padding: 18px 16px; }
+  .car-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .car-model { font-size: 12px; color: var(--gray); margin-bottom: 14px; }
+
+  .car-features {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .feat {
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px; padding: 4px 10px;
+    font-size: 11px; color: #aab;
+  }
+
+  .car-price-row {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 14px;
+  }
+  .price { font-size: 20px; font-weight: 900; color: var(--gold); }
+  .price span { font-size: 12px; color: var(--gray); font-weight: 400; }
+
+  .book-btn {
+    background: var(--blue-light); color: white;
+    border: none; padding: 8px 18px; border-radius: 6px;
+    font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: background .2s;
+  }
+  .book-btn:hover { background: var(--blue); }
+
+  /* ── WHY US ── */
+  #why { background: var(--darker); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .why-card {
+    text-align: center; padding: 36px 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: border-color .2s;
+  }
+  .why-card:hover { border-color: var(--gold); }
+
+  .why-icon {
+    font-size: 40px; margin-bottom: 16px; display: block;
+  }
+  .why-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .why-card p { color: var(--gray); font-size: 13px; line-height: 1.7; }
+
+  /* ── BOOKING ── */
+  #booking { background: var(--dark); }
+
+  .booking-wrap {
+    max-width: 700px; margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 48px 40px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-size: 13px; font-weight: 600; color: #aab;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--white);
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    transition: border-color .2s;
+    direction: rtl;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--blue-light);
+  }
+
+  .form-group select option { background: var(--dark); }
+
+  .submit-btn {
+    width: 100%; margin-top: 24px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+    color: white; border: none;
+    padding: 16px; border-radius: 10px;
+    font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: transform .2s, box-shadow .2s;
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.4); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--darker); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px; align-items: center;
+  }
+
+  .contact-info h3 { font-size: 26px; font-weight: 900; margin-bottom: 20px; }
+  .contact-info h3 span { color: var(--gold); }
+
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px;
+    padding: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .contact-icon { font-size: 22px; }
+  .contact-text { line-height: 1.4; }
+  .contact-text strong { font-size: 13px; color: var(--gray); display: block; }
+  .contact-text a {
+    color: var(--white); text-decoration: none; font-size: 15px; font-weight: 600;
+  }
+  .contact-text a:hover { color: var(--gold); }
+
+  .map-placeholder {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    height: 300px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 14px;
+  }
+
+  .map-placeholder span { font-size: 48px; }
+  .map-placeholder p { color: var(--gray); font-size: 14px; }
+  .map-placeholder a {
+    background: var(--gold); color: var(--darker);
+    padding: 10px 24px; border-radius: 8px;
+    text-decoration: none; font-weight: 700; font-size: 14px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0b0e1a;
+    border-top: 1px solid var(--border);
+    padding: 32px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  footer p { color: var(--gray); font-size: 13px; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: var(--gray); text-decoration: none; font-size: 13px; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 28px; left: 28px; z-index: 200;
+    background: #25d366; color: white;
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .hero { flex-direction: column; text-align: center; }
+    .hero-stats { justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .hero-car { margin-top: 40px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .booking-wrap { padding: 28px 20px; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-emerald-600">🕋 عمرة المبرور</div>
-            <nav class="hidden md:flex space-x-reverse space-x-6 font-medium">
-                <a href="#" class="text-emerald-600">الرئيسية</a>
-                <a href="#رحلاتنا" class="hover:text-emerald-600 transition">الرحلات الحالية</a>
-                <a href="#admin-section" class="text-gray-500 hover:text-red-600 transition font-bold">🔐 لوحة التحكم (للمؤطرين)</a>
-            </nav>
-            <a href="#رحلاتنا" class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-700 transition shadow-md">احجز عمرتك الآن</a>
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-text">
+      <div class="ar">البرق الأزرق</div>
+      <div class="en">ALBARQ CAR RENTAL</div>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#cars">السيارات</a></li>
+    <li><a href="#why">لماذا نحن</a></li>
+    <li><a href="#booking">الحجز</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">احجز الآن</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">⭐ تقييم 4.6 من 5 على جوجل</div>
+    <h1>تأجير سيارات<br><span>بسرعة البرق</span></h1>
+    <p>أفضل تجربة تأجير سيارات في أبها — أسعار تنافسية، سيارات حديثة، وخدمة عملاء راقية تلبي كل احتياجاتك.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary">🚗 احجز سيارتك الآن</a>
+      <a href="tel:+966532545559" class="btn-outline">📞 اتصل بنا</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-lbl">سيارة متاحة</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.6★</div>
+        <div class="stat-lbl">تقييم العملاء</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-lbl">خدمة مستمرة</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-car">
+    <div class="car-visual">
+      <span class="car-emoji">🚗</span>
+      <div class="car-tag">متوفر الآن</div>
+      <p>سيارات حديثة بأفضل الأسعار</p>
+    </div>
+  </div>
+</section>
+
+<!-- CARS -->
+<section id="cars">
+  <div class="section-head">
+    <h2>أسطولنا من <span>السيارات</span></h2>
+    <p>اختر من بين مجموعة متنوعة من السيارات تناسب جميع الاحتياجات والمناسبات</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="cars-grid">
+
+    <div class="car-card">
+      <div class="car-img">🚗<span class="car-badge-cat">اقتصادي</span></div>
+      <div class="car-info">
+        <div class="car-name">هيونداي اكسنت</div>
+        <div class="car-model">2024 • أوتوماتيك</div>
+        <div class="car-features">
+          <span class="feat">5 مقاعد</span>
+          <span class="feat">بنزين</span>
+          <span class="feat">A/C</span>
         </div>
-    </header>
-
-    <section class="relative bg-emerald-900 text-white py-20 px-4 text-center overflow-hidden">
-        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?q=80&w=1200')] bg-cover bg-center"></div>
-        <div class="relative max-w-3xl mx-auto z-10">
-            <span class="bg-emerald-800 text-emerald-300 text-sm font-bold px-4 py-1.5 rounded-full inline-block mb-4">خدمة متكاملة من المغرب إلى البقاع المقدسة</span>
-            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">سهل عمرتك، وخلي الباقي علينا</h1>
-            <p class="text-lg md:text-xl text-emerald-100 mb-8 font-light">تسيير احترافي، فنادق قريبة، ومؤطرين معاك خطوة بخطوة من المطار حتى لـ مكة والمدينة.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#رحلاتنا" class="bg-amber-500 text-gray-900 font-bold px-8 py-3.5 rounded-xl hover:bg-amber-400 transition text-lg shadow-lg">شوف الرحلات المتوفرة</a>
-                <a href="https://wa.me/212600000000" target="_blank" class="bg-transparent border-2 border-white text-white font-bold px-8 py-3.5 rounded-xl hover:bg-white hover:text-emerald-950 transition text-lg flex items-center justify-center gap-2">
-                    💬 هضر معانا ف الواتساب
-                </a>
-            </div>
+        <div class="car-price-row">
+          <div class="price">150 <span>ريال / يوم</span></div>
+          <button class="book-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">احجز</button>
         </div>
-    </section>
-
-    <section id="رحلاتنا" class="max-w-7xl mx-auto px-4 py-16">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-black text-gray-900 mb-2">الرحلات والمجموعات المقبلة</h2>
-            <p class="text-gray-600">اختار الرحلة اللي كتناسب وقتك وميزانيتك، وتسجل فـ دقيقة</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=600" alt="عمرة" class="w-full h-48 object-cover">
-                    <span class="absolute top-4 right-4 bg-emerald-600 text-white font-bold px-3 py-1 rounded-lg text-sm">متبقي 6 مقاعد فقط!</span>
-                </div>
-                <div class="p-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2 text-gray-900">عمرة شهر محرم الاقتصادية</h3>
-                    <p class="text-emerald-600 font-bold text-2xl mb-4">14,500 درهم <span class="text-sm font-normal text-gray-500">/ للشخص</span></p>
-                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
-                        <li>📅 <strong>التاريخ:</strong> من 15 يوليوز إلى 30 يوليوز</li>
-                        <li>✈️ <strong>الطيران:</strong> مباشر من الدار البيضاء</li>
-                        <li>🏨 <strong>مكة:</strong> فندق 4 نجوم (600 متر)</li>
-                    </ul>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="openBookingModal('عمرة شهر محرم الاقتصادية')" class="w-full bg-emerald-50 text-emerald-700 font-bold py-3 px-4 rounded-xl hover:bg-emerald-600 hover:text-white transition border border-emerald-600 text-center">
-                        احجز مقعدك وتسابقت دابا
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=600" alt="عمرة ممتازة" class="w-full h-48 object-cover">
-                    <span class="absolute top-4 right-4 bg-blue-600 text-white font-bold px-3 py-1 rounded-lg text-sm">مجموعة VIP</span>
-                </div>
-                <div class="p-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2 text-gray-900">عمرة التميز (فنادق ساحة الحرم)</h3>
-                    <p class="text-emerald-600 font-bold text-2xl mb-4">19,800 درهم <span class="text-sm font-normal text-gray-500">/ للشخص</span></p>
-                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
-                        <li>📅 <strong>التاريخ:</strong> من 02 غشت إلى 17 غشت</li>
-                        <li>✈️ <strong>الطيران:</strong> الخطوط السعودية مباشر</li>
-                        <li>🏨 <strong>مكة:</strong> أبراج موفنبيك الساحة</li>
-                    </ul>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="openBookingModal('عمرة التميز (فنادق ساحة الحرم)')" class="w-full bg-emerald-50 text-emerald-700 font-bold py-3 px-4 rounded-xl hover:bg-emerald-600 hover:text-white transition border border-emerald-600 text-center">
-                        احجز مقعدك وتسابقت دابا
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="admin-section" class="bg-gray-200 py-16 px-4 border-t-4 border-emerald-700">
-        <div class="max-w-7xl mx-auto space-y-6">
-            <div class="bg-emerald-800 text-white p-4 rounded-2xl shadow-md flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">🔐</span>
-                    <h2 class="text-xl font-black">لوحة تحكم المؤطرين (تحديث فوري)</h2>
-                </div>
-                <span class="text-xs bg-emerald-700 px-3 py-1 rounded-full">خاص بالوكالة</span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white p-5 rounded-xl shadow-sm flex justify-between items-center">
-                    <div>
-                        <p class="text-xs text-gray-500">المسجلين عبر السيت</p>
-                        <h4 id="totalPilgrimsCount" class="text-2xl font-black text-gray-900 mt-1">0 معتمر</h4>
-                    </div>
-                    <span class="text-2xl p-2 bg-emerald-50 rounded-lg">👥</span>
-                </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm flex justify-between items-center">
-                    <div>
-                        <p class="text-xs text-gray-500">تنبيهات الواتساب الجاهزة</p>
-                        <h4 class="text-2xl font-black text-emerald-600 mt-1">أوتوماتيكية</h4>
-                    </div>
-                    <span class="text-2xl p-2 bg-green-50 rounded-lg">💬</span>
-                </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm flex justify-between items-center">
-                    <button onclick="clearDatabase()" class="bg-red-100 text-red-700 hover:bg-red-200 text-xs font-bold p-3 rounded-lg w-full transition">
-                        🗑️ مسح كاع البيانات للتجربة من جديد
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-right border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 border-b border-gray-200 text-gray-700 text-xs font-bold">
-                                <th class="p-4">اسم المعتمر</th>
-                                <th class="p-4">رقم الهاتف</th>
-                                <th class="p-4">الرحلة المختارة</th>
-                                <th class="p-4">جواز السفر (تجريبي)</th>
-                                <th class="p-4">تواصل سريع</th>
-                            </tr>
-                        </thead>
-                        <tbody id="pilgrimsTableBody" class="text-xs divide-y divide-gray-100 text-gray-700">
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="bookingModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 relative animate-fade-in">
-            <button onclick="closeBookingModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-            <h3 class="text-2xl font-black mb-1 text-emerald-800">استمارة الحجز المبدئي</h3>
-            <p class="text-xs text-gray-500 mb-6">عمر معلوماتك التجريبية وشوفها كيفاش غاتبان ف لوحة التحكم لتحت.</p>
-            
-            <form id="clientBookingForm" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">الرحلة المختارة</label>
-                    <input type="text" id="selectedTrip" class="w-full p-3 bg-gray-100 border border-gray-300 rounded-xl font-bold" readonly>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">الاسم الكامل</label>
-                    <input type="text" id="fullName" required placeholder="مثال: أحمد العلمي" class="w-full p-3 border border-gray-300 rounded-xl outline-none focus:border-emerald-6xl">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">رقم الهاتف (الواتساب)</label>
-                    <input type="tel" id="phoneNum" required placeholder="مثال: 0612345678" class="w-full p-3 border border-gray-300 rounded-xl text-right outline-none focus:border-emerald-6xl" dir="ltr">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">صورة جواز السفر</label>
-                    <input type="file" disabled class="w-full p-2 border border-dashed border-gray-300 rounded-xl bg-gray-100 text-gray-400 text-xs" title="الرفع يحتاج سيرفر PHP، في Netlify نكتفي بالمعلومات النصية والواتساب">
-                    <span class="text-[10px] text-gray-400">*(الرفع معطل حيت Netlify ستاتيك وبلا سيرفر، قاضي الغرض بالنص والواتساب)*</span>
-                </div>
-                
-                <button type="submit" class="w-full bg-emerald-6xl text-white font-bold py-3.5 rounded-xl shadow-md transition hover:bg-emerald-700 style-button" style="background-color: #059669;">
-                    إرسال الطلب وتأكيد المقعد 🕋
-                </button>
-            </form>
-        </div>
+      </div>
     </div>
 
-    <script>
-        function openBookingModal(tripName) {
-            document.getElementById('selectedTrip').value = tripName;
-            document.getElementById('bookingModal').classList.remove('hidden');
-        }
-        function closeBookingModal() {
-            document.getElementById('bookingModal').classList.add('hidden');
-        }
+    <div class="car-card">
+      <div class="car-img">🚙<span class="car-badge-cat">عائلي</span></div>
+      <div class="car-info">
+        <div class="car-name">هيونداي سوناتا</div>
+        <div class="car-model">2024 • أوتوماتيك</div>
+        <div class="car-features">
+          <span class="feat">5 مقاعد</span>
+          <span class="feat">بنزين</span>
+          <span class="feat">بلوتوث</span>
+        </div>
+        <div class="car-price-row">
+          <div class="price">200 <span>ريال / يوم</span></div>
+          <button class="book-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">احجز</button>
+        </div>
+      </div>
+    </div>
 
-        // دالة لجلب البيانات وعرضها ف الجدول
-        function renderTable() {
-            const tableBody = document.getElementById('pilgrimsTableBody');
-            const countBadge = document.getElementById('totalPilgrimsCount');
-            
-            // جلب البيانات مخزنة ف المتصفح (LocalStorage)
-            let pilgrims = JSON.parse(localStorage.getItem('pilgrimsData')) || [];
-            
-            countBadge.innerText = pilgrims.length + " معتمر(ة)";
-            tableBody.innerHTML = "";
+    <div class="car-card">
+      <div class="car-img">🛻<span class="car-badge-cat">SUV</span></div>
+      <div class="car-info">
+        <div class="car-name">هيونداي توسان</div>
+        <div class="car-model">2024 • أوتوماتيك</div>
+        <div class="car-features">
+          <span class="feat">5 مقاعد</span>
+          <span class="feat">4×4</span>
+          <span class="feat">كاميرا</span>
+        </div>
+        <div class="car-price-row">
+          <div class="price">280 <span>ريال / يوم</span></div>
+          <button class="book-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">احجز</button>
+        </div>
+      </div>
+    </div>
 
-            if(pilgrims.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-400">باقي تاواحد ما تسجل. جرب عمر الفورم لفوق وغاتبان سميتك هنا ديريكت!</td></tr>`;
-                return;
-            }
+    <div class="car-card">
+      <div class="car-img">🚐<span class="car-badge-cat">فاخر</span></div>
+      <div class="car-info">
+        <div class="car-name">تويوتا كامري</div>
+        <div class="car-model">2024 • أوتوماتيك</div>
+        <div class="car-features">
+          <span class="feat">5 مقاعد</span>
+          <span class="feat">جلد</span>
+          <span class="feat">بانوراما</span>
+        </div>
+        <div class="car-price-row">
+          <div class="price">300 <span>ريال / يوم</span></div>
+          <button class="book-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">احجز</button>
+        </div>
+      </div>
+    </div>
 
-            pilgrims.forEach(function(p) {
-                // سحر الميساج د الواتساب بالدارجة
-                let customMsg = `السلام عليكم يا حاج ${p.name}، معاك مؤطر رحلة (${p.trip}). الطلب ديالك للحجز ف العمرة وصلنا بنجاح عبر الموقع الإلكتروني. عفاك واش الراق ديالك واجدين؟`;
-                let whatsappUrl = `https://wa.me/${p.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(customMsg)}`;
+  </div>
+</section>
 
-                tableBody.innerHTML += `
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="p-4 font-bold text-gray-900">${p.name}</td>
-                        <td class="p-4 font-mono text-left" dir="ltr">${p.phone}</td>
-                        <td class="p-4 text-gray-600">${p.trip}</td>
-                        <td class="p-4 text-gray-400 italic">📁 محاكي (Netlify)</td>
-                        <td class="p-4">
-                            <a href="${whatsappUrl}" target="_blank" class="inline-block bg-emerald-50 text-emerald-700 border border-emerald-400 font-bold px-3 py-1.5 rounded-xl hover:bg-emerald-600 hover:text-white transition">
-                                💬 صيفط ف الواتساب
-                            </a>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
+<!-- WHY -->
+<section id="why">
+  <div class="section-head">
+    <h2>لماذا تختار <span>البرق؟</span></h2>
+    <p>خدمة موثوقة وتجربة استثنائية في كل مرة</p>
+    <div class="divider"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-icon">💰</span>
+      <h3>أسعار تنافسية</h3>
+      <p>أفضل الأسعار في السوق مع شفافية تامة بدون رسوم خفية</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🚘</span>
+      <h3>سيارات حديثة</h3>
+      <p>أسطول متجدد من أحدث الموديلات في حالة ممتازة دائماً</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">⚡</span>
+      <h3>تسليم سريع</h3>
+      <p>استلم سيارتك في أقل وقت ممكن، نحترم وقتك</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🛡️</span>
+      <h3>تأمين شامل</h3>
+      <p>جميع سياراتنا مؤمنة بالكامل لراحة بالك في كل رحلة</p>
+    </div>
+  </div>
+</section>
 
-        // معالجة إرسال الفورم
-        document.getElementById('clientBookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('fullName').value;
-            const phone = document.getElementById('phoneNum').value;
-            const trip = document.getElementById('selectedTrip').value;
+<!-- BOOKING -->
+<section id="booking">
+  <div class="section-head">
+    <h2>احجز <span>سيارتك</span> الآن</h2>
+    <p>أكمل البيانات وسنتواصل معك في أقرب وقت</p>
+    <div class="divider"></div>
+  </div>
 
-            let pilgrims = JSON.parse(localStorage.getItem('pilgrimsData')) || [];
-            pilgrims.unshift({ name: name, phone: phone, trip: trip }); // تزيد الجديد هو لول
-            
-            localStorage.setItem('pilgrimsData', JSON.stringify(pilgrims));
-            
-            alert('تم إرسال طلبك بنجاح! هبط لتحت لـ "لوحة التحكم" وغاتلقى معلوماتك تما لايف.');
-            closeBookingModal();
-            renderTable(); // إنعاش الجدول
-            
-            // مسح الخانات
-            document.getElementById('fullName').value = "";
-            document.getElementById('phoneNum').value = "";
-        });
-
-        // دالة لمسح الداتابيز التجريبية
-        function clearDatabase() {
-            if(confirm('واش بصح بغيتي تمسح كاع المعتمرين اللي تسجلو ف التجربة؟')) {
-                localStorage.removeItem('pilgrimsData');
-                renderTable();
-            }
-        }
-
-        // تشغيل الجدول أول مرة تحلات الصفحة
-        window.onload = renderTable;
-    </script>
-</body>
-</html>
+  <div class="booking-wrap">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>الاسم الكامل</label>
+        <input type="text" placeholder="أدخل اسمك الكامل">
+      </div>
+      <div class="form-group">
+        <label>رقم الجوال</label>
+        <input type="tel" placeholder="05XXXXXXXX" dir="ltr">
+      </div>
+      <div class="form-group">
+        <label>نوع السيارة</label>
+        <select>
+          <option value="">— اختر السيارة —</option>
+          <option>هيونداي اكسنت — 150 ريال/يوم</option>
+          <option>هيونداي سوناتا — 200 ريال/يوم</option>
+          <option>هيونداي توسان — 280 ريال/يوم</option>
+          <option>تويوتا كامري — 300 ريال/يوم</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>مدة الإيجار</label>
+        <select>
+          <option value="">— اختر المدة —</option>
+          <option>يوم واحد</option>
+          <option>3 أيام</option>
+          <option>أسبوع</option>
+          <option>شهر</option>
+          <option>أكثر من شهر</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>تاريخ الاستلام</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>تاريخ الإرجاع</label>
+        <input type="date">
+      </div>
+      <div class="form-group full">
+        <label>ملاحظات إضافية</label>
+        <textarea rows="3" placeholder="أي متطلبات خاصة أو ملاحظات.
