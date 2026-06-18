@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة العمرة الإلكترونية - لوحة التحكم والتسجيل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-emerald-600">🕋 عمرة المبرور</div>
+            <nav class="hidden md:flex space-x-reverse space-x-6 font-medium">
+                <a href="#" class="text-emerald-600">الرئيسية</a>
+                <a href="#رحلاتنا" class="hover:text-emerald-600 transition">الرحلات الحالية</a>
+                <a href="#admin-section" class="text-gray-500 hover:text-red-600 transition font-bold">🔐 لوحة التحكم (للمؤطرين)</a>
+            </nav>
+            <a href="#رحلاتنا" class="bg-emerald-600 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-700 transition shadow-md">احجز عمرتك الآن</a>
+        </div>
+    </header>
+
+    <section class="relative bg-emerald-900 text-white py-20 px-4 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?q=80&w=1200')] bg-cover bg-center"></div>
+        <div class="relative max-w-3xl mx-auto z-10">
+            <span class="bg-emerald-800 text-emerald-300 text-sm font-bold px-4 py-1.5 rounded-full inline-block mb-4">خدمة متكاملة من المغرب إلى البقاع المقدسة</span>
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">سهل عمرتك، وخلي الباقي علينا</h1>
+            <p class="text-lg md:text-xl text-emerald-100 mb-8 font-light">تسيير احترافي، فنادق قريبة، ومؤطرين معاك خطوة بخطوة من المطار حتى لـ مكة والمدينة.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#رحلاتنا" class="bg-amber-500 text-gray-900 font-bold px-8 py-3.5 rounded-xl hover:bg-amber-400 transition text-lg shadow-lg">شوف الرحلات المتوفرة</a>
+                <a href="https://wa.me/212600000000" target="_blank" class="bg-transparent border-2 border-white text-white font-bold px-8 py-3.5 rounded-xl hover:bg-white hover:text-emerald-950 transition text-lg flex items-center justify-center gap-2">
+                    💬 هضر معانا ف الواتساب
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="رحلاتنا" class="max-w-7xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black text-gray-900 mb-2">الرحلات والمجموعات المقبلة</h2>
+            <p class="text-gray-600">اختار الرحلة اللي كتناسب وقتك وميزانيتك، وتسجل فـ دقيقة</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=600" alt="عمرة" class="w-full h-48 object-cover">
+                    <span class="absolute top-4 right-4 bg-emerald-600 text-white font-bold px-3 py-1 rounded-lg text-sm">متبقي 6 مقاعد فقط!</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">عمرة شهر محرم الاقتصادية</h3>
+                    <p class="text-emerald-600 font-bold text-2xl mb-4">14,500 درهم <span class="text-sm font-normal text-gray-500">/ للشخص</span></p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li>📅 <strong>التاريخ:</strong> من 15 يوليوز إلى 30 يوليوز</li>
+                        <li>✈️ <strong>الطيران:</strong> مباشر من الدار البيضاء</li>
+                        <li>🏨 <strong>مكة:</strong> فندق 4 نجوم (600 متر)</li>
+                    </ul>
+                </div>
+                <div class="p-6 pt-0">
+                    <button onclick="openBookingModal('عمرة شهر محرم الاقتصادية')" class="w-full bg-emerald-50 text-emerald-700 font-bold py-3 px-4 rounded-xl hover:bg-emerald-600 hover:text-white transition border border-emerald-600 text-center">
+                        احجز مقعدك وتسابقت دابا
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=600" alt="عمرة ممتازة" class="w-full h-48 object-cover">
+                    <span class="absolute top-4 right-4 bg-blue-600 text-white font-bold px-3 py-1 rounded-lg text-sm">مجموعة VIP</span>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">عمرة التميز (فنادق ساحة الحرم)</h3>
+                    <p class="text-emerald-600 font-bold text-2xl mb-4">19,800 درهم <span class="text-sm font-normal text-gray-500">/ للشخص</span></p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li>📅 <strong>التاريخ:</strong> من 02 غشت إلى 17 غشت</li>
+                        <li>✈️ <strong>الطيران:</strong> الخطوط السعودية مباشر</li>
+                        <li>🏨 <strong>مكة:</strong> أبراج موفنبيك الساحة</li>
+                    </ul>
+                </div>
+                <div class="p-6 pt-0">
+                    <button onclick="openBookingModal('عمرة التميز (فنادق ساحة الحرم)')" class="w-full bg-emerald-50 text-emerald-700 font-bold py-3 px-4 rounded-xl hover:bg-emerald-600 hover:text-white transition border border-emerald-600 text-center">
+                        احجز مقعدك وتسابقت دابا
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admin-section" class="bg-gray-200 py-16 px-4 border-t-4 border-emerald-700">
+        <div class="max-w-7xl mx-auto space-y-6">
+            <div class="bg-emerald-800 text-white p-4 rounded-2xl shadow-md flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🔐</span>
+                    <h2 class="text-xl font-black">لوحة تحكم المؤطرين (تحديث فوري)</h2>
+                </div>
+                <span class="text-xs bg-emerald-700 px-3 py-1 rounded-full">خاص بالوكالة</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-5 rounded-xl shadow-sm flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-500">المسجلين عبر السيت</p>
+                        <h4 id="totalPilgrimsCount" class="text-2xl font-black text-gray-900 mt-1">0 معتمر</h4>
+                    </div>
+                    <span class="text-2xl p-2 bg-emerald-50 rounded-lg">👥</span>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-500">تنبيهات الواتساب الجاهزة</p>
+                        <h4 class="text-2xl font-black text-emerald-600 mt-1">أوتوماتيكية</h4>
+                    </div>
+                    <span class="text-2xl p-2 bg-green-50 rounded-lg">💬</span>
+                </div>
+                <div class="bg-white p-5 rounded-xl shadow-sm flex justify-between items-center">
+                    <button onclick="clearDatabase()" class="bg-red-100 text-red-700 hover:bg-red-200 text-xs font-bold p-3 rounded-lg w-full transition">
+                        🗑️ مسح كاع البيانات للتجربة من جديد
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200 text-gray-700 text-xs font-bold">
+                                <th class="p-4">اسم المعتمر</th>
+                                <th class="p-4">رقم الهاتف</th>
+                                <th class="p-4">الرحلة المختارة</th>
+                                <th class="p-4">جواز السفر (تجريبي)</th>
+                                <th class="p-4">تواصل سريع</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pilgrimsTableBody" class="text-xs divide-y divide-gray-100 text-gray-700">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="bookingModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 relative animate-fade-in">
+            <button onclick="closeBookingModal()" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            <h3 class="text-2xl font-black mb-1 text-emerald-800">استمارة الحجز المبدئي</h3>
+            <p class="text-xs text-gray-500 mb-6">عمر معلوماتك التجريبية وشوفها كيفاش غاتبان ف لوحة التحكم لتحت.</p>
+            
+            <form id="clientBookingForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">الرحلة المختارة</label>
+                    <input type="text" id="selectedTrip" class="w-full p-3 bg-gray-100 border border-gray-300 rounded-xl font-bold" readonly>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">الاسم الكامل</label>
+                    <input type="text" id="fullName" required placeholder="مثال: أحمد العلمي" class="w-full p-3 border border-gray-300 rounded-xl outline-none focus:border-emerald-6xl">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">رقم الهاتف (الواتساب)</label>
+                    <input type="tel" id="phoneNum" required placeholder="مثال: 0612345678" class="w-full p-3 border border-gray-300 rounded-xl text-right outline-none focus:border-emerald-6xl" dir="ltr">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">صورة جواز السفر</label>
+                    <input type="file" disabled class="w-full p-2 border border-dashed border-gray-300 rounded-xl bg-gray-100 text-gray-400 text-xs" title="الرفع يحتاج سيرفر PHP، في Netlify نكتفي بالمعلومات النصية والواتساب">
+                    <span class="text-[10px] text-gray-400">*(الرفع معطل حيت Netlify ستاتيك وبلا سيرفر، قاضي الغرض بالنص والواتساب)*</span>
+                </div>
+                
+                <button type="submit" class="w-full bg-emerald-6xl text-white font-bold py-3.5 rounded-xl shadow-md transition hover:bg-emerald-700 style-button" style="background-color: #059669;">
+                    إرسال الطلب وتأكيد المقعد 🕋
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openBookingModal(tripName) {
+            document.getElementById('selectedTrip').value = tripName;
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // دالة لجلب البيانات وعرضها ف الجدول
+        function renderTable() {
+            const tableBody = document.getElementById('pilgrimsTableBody');
+            const countBadge = document.getElementById('totalPilgrimsCount');
+            
+            // جلب البيانات مخزنة ف المتصفح (LocalStorage)
+            let pilgrims = JSON.parse(localStorage.getItem('pilgrimsData')) || [];
+            
+            countBadge.innerText = pilgrims.length + " معتمر(ة)";
+            tableBody.innerHTML = "";
+
+            if(pilgrims.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-400">باقي تاواحد ما تسجل. جرب عمر الفورم لفوق وغاتبان سميتك هنا ديريكت!</td></tr>`;
+                return;
+            }
+
+            pilgrims.forEach(function(p) {
+                // سحر الميساج د الواتساب بالدارجة
+                let customMsg = `السلام عليكم يا حاج ${p.name}، معاك مؤطر رحلة (${p.trip}). الطلب ديالك للحجز ف العمرة وصلنا بنجاح عبر الموقع الإلكتروني. عفاك واش الراق ديالك واجدين؟`;
+                let whatsappUrl = `https://wa.me/${p.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(customMsg)}`;
+
+                tableBody.innerHTML += `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 font-bold text-gray-900">${p.name}</td>
+                        <td class="p-4 font-mono text-left" dir="ltr">${p.phone}</td>
+                        <td class="p-4 text-gray-600">${p.trip}</td>
+                        <td class="p-4 text-gray-400 italic">📁 محاكي (Netlify)</td>
+                        <td class="p-4">
+                            <a href="${whatsappUrl}" target="_blank" class="inline-block bg-emerald-50 text-emerald-700 border border-emerald-400 font-bold px-3 py-1.5 rounded-xl hover:bg-emerald-600 hover:text-white transition">
+                                💬 صيفط ف الواتساب
+                            </a>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // معالجة إرسال الفورم
+        document.getElementById('clientBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phoneNum').value;
+            const trip = document.getElementById('selectedTrip').value;
+
+            let pilgrims = JSON.parse(localStorage.getItem('pilgrimsData')) || [];
+            pilgrims.unshift({ name: name, phone: phone, trip: trip }); // تزيد الجديد هو لول
+            
+            localStorage.setItem('pilgrimsData', JSON.stringify(pilgrims));
+            
+            alert('تم إرسال طلبك بنجاح! هبط لتحت لـ "لوحة التحكم" وغاتلقى معلوماتك تما لايف.');
+            closeBookingModal();
+            renderTable(); // إنعاش الجدول
+            
+            // مسح الخانات
+            document.getElementById('fullName').value = "";
+            document.getElementById('phoneNum').value = "";
+        });
+
+        // دالة لمسح الداتابيز التجريبية
+        function clearDatabase() {
+            if(confirm('واش بصح بغيتي تمسح كاع المعتمرين اللي تسجلو ف التجربة؟')) {
+                localStorage.removeItem('pilgrimsData');
+                renderTable();
+            }
+        }
+
+        // تشغيل الجدول أول مرة تحلات الصفحة
+        window.onload = renderTable;
+    </script>
+</body>
+</html>
